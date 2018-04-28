@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/login", "/register").anonymous()
-                .antMatchers("/tasks**").authenticated();
+                .antMatchers("/tasks**", "/comment**").authenticated();
 
         http.csrf().disable()
                 .formLogin()

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.innopolis.rinatgumarov.selfdevelopment.model.User;
 import ru.innopolis.rinatgumarov.selfdevelopment.service.UserService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -37,7 +38,6 @@ public class AuthController {
         return "register";
     }
 
-    @SneakyThrows
     @PostMapping(value = "/register")
     public String register(
             HttpServletRequest request,
@@ -45,7 +45,7 @@ public class AuthController {
             @RequestParam(name = "passwordRepeat") String passwordRepeat,
             @RequestParam(name = "login") String login,
             Model model
-    ) {
+    ) throws ServletException {
         if (userService.findByLogin(login) != null) {
             model.addAttribute("error", "Login is already taken by another user");
             return "register";

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,4 +29,6 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    private List<Comment> comments;
 }

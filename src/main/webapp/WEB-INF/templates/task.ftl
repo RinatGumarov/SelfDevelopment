@@ -97,6 +97,39 @@
             <div class="col-md-4">
             </div>
         </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <p>Comments</p>
+                <#if comments?? && comments?has_content>
+                    <div class="list-group">
+                    <#list comments as comment>
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="#"
+                                       style="color: #31302B; font-size: small">${format.format(comment.date)}</a>
+                                    <p>${comment.text}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </#list>
+                    </div>
+                <#else>
+                    <p>There are no comments yet.</p>
+                </#if>
+
+            </div>
+            <div class="row">
+                <form class="form" action="/comment/${task.id}/add" method="post">
+                    <div class="form-group" id="addressGroup">
+                        <textarea name="text" placeholder="Add you comment here" class="form-control"></textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 <script>
